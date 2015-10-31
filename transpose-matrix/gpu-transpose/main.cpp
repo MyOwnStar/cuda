@@ -5,19 +5,26 @@
 
 #include <cuda_runtime.h>
 
-#define ITERATIONS 20
 
 int main()
 {
-    const size_t row = 8192;
-    const size_t column = 4096;
+    getGPUInfo();
+
+    size_t row = 0;
+    size_t column = 0;
+    size_t iterations = 0;
+
+    std::cout << "Row: ";
+    std::cin >> row;
+    std::cout << "Column: ";
+    std::cin >> column;
+    std::cout << "Iterations: ";
+    std::cin >> iterations;
+
     const size_t matrixSize = row * column;
     const size_t byteSize = matrixSize * sizeof(float);
 
-    getGPUInfo();
-
     std::cout << "Matrix size (float): " << row << "x" << column << std::endl;
-   // std::cout << "Iterations: " << ITERATIONS << std::endl << std::endl;
 
     std::cout << "Allocatin RAM... ";
     float *hostInputMatrix = new float[matrixSize];
@@ -48,7 +55,7 @@ int main()
 
     std::cout << "Computing... ";
     cudaEventRecord(start, 0);
-   // for (size_t i = 0; i < ITERATIONS; i++)
+    for (size_t i = 0; i <= iterations; i++)
         transpose(deviceInputMatrix, deviceOutputMatrix, row ,column);
     cudaEventRecord(stop, 0);
     std::cout << "OK!" << std::endl;
