@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/gputrans.dir/main.cpp.o CMakeFiles/gputrans.dir/utils/tools.cpp.o CMakeFiles/gputrans.dir/./gputrans_generated_kernel.cu.o  -o gputrans -rdynamic -lcudart 

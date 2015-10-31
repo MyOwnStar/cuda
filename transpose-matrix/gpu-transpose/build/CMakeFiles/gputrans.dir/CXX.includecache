@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/star/Github/cuda/transpose-matrix/gpu-transpose/kernel.h
+iostream
+-
+
+/home/star/Github/cuda/transpose-matrix/gpu-transpose/main.cpp
+iostream
+-
+utils/tools.h
+/home/star/Github/cuda/transpose-matrix/gpu-transpose/utils/tools.h
+kernel.h
+/home/star/Github/cuda/transpose-matrix/gpu-transpose/kernel.h
+cuda_runtime.h
+-
+
+/home/star/Github/cuda/transpose-matrix/gpu-transpose/utils/tools.cpp
+tools.h
+/home/star/Github/cuda/transpose-matrix/gpu-transpose/utils/tools.h
+iomanip
+-
+cuda_runtime.h
+-
+
+/home/star/Github/cuda/transpose-matrix/gpu-transpose/utils/tools.h
+iostream
+-
+

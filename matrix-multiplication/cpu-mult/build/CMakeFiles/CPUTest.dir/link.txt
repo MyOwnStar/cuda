@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/CPUTest.dir/main.cpp.o CMakeFiles/CPUTest.dir/cpumult.cpp.o CMakeFiles/CPUTest.dir/utils/tools.cpp.o  -o CPUTest -rdynamic 

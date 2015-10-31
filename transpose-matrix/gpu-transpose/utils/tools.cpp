@@ -42,6 +42,7 @@ void getGPUInfo()
     {
         cudaGetDeviceProperties(&prop, i);
 
-        std::cout << "GPU: " << prop.name <<  " (CC: " << prop.major << "." <<prop.minor << ")" << std::endl;
+        std::cout << "GPU: " << prop.name << std::endl;
+        std::cout << "Copmpute capability: " << prop.major << "." << prop.minor << std::endl;
     }
 }
