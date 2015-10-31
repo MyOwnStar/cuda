@@ -79,5 +79,11 @@ int main()
     cudaFree(deviceInputMatrix);
     cudaFree(deviceOutputMatrix);
 
+#ifdef _WIN32
+
+    getchar();
+
+#endif
+
     return 0;
 }
