@@ -55,5 +55,11 @@ int main()
     delete[] inputMatrix;
     delete[] outputMatrix;
 
+#ifdef _WIN32
+
+    getchar();
+
+#endif
+
     return 0;
 }
