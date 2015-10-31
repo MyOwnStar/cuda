@@ -4,19 +4,26 @@
 #include "utils/tools.h"
 #include "transpose.h"
 
-#define ITERATIONS 20
 
 int main()
 {
-    const size_t row = 2048;
-    const size_t column = 2048;
-    const size_t matrixSize = row * column;
-
     getCPUInfo();
+
+    size_t row = 0;
+    size_t column = 0;
+    size_t iterations = 0;
+
+    std::cout << "Row: ";
+    std::cin >> row;
+    std::cout << "Column: ";
+    std::cin >> column;
+    std::cout << "Itrations: ";
+    std::cin >> iterations;
+
+    const size_t matrixSize = row * column;
 
     // Information
     std::cout << "Matrix size (float): " << row << "x" << column << std::endl;
-    std::cout << "Iterations: " << ITERATIONS << std::endl;
 
     std::cout << "Allocating RAM... ";
     float *inputMatrix = new float[matrixSize];
@@ -33,7 +40,7 @@ int main()
 
     std::cout << "Computing... ";
     Time start = std::chrono::steady_clock::now();
-    for (size_t i = 0; i < ITERATIONS; i++)
+    for (size_t i = 0; i <= iterations; i++)
         transpose(inputMatrix, outputMatrix, row, column);
     Time stop = std::chrono::steady_clock::now();
     std::cout << "OK!" << std::endl << std::endl;
@@ -47,6 +54,7 @@ int main()
 
     delete[] inputMatrix;
     delete[] outputMatrix;
+
 
     return 0;
 }
