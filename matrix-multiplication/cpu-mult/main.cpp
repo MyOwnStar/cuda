@@ -8,20 +8,40 @@
 
 int main()
 {
-   const size_t rowA = 2048;
-   const size_t columnA = 1536;
-   const size_t matrixSizeA = rowA * columnA;
+   getCPUInfo();
 
-   const size_t rowB = 1536;
-   const size_t columnB = 4096;
-   const size_t matrixSizeB = rowB * columnB;
+   size_t rowA = 0;
+   size_t columnA = 0;
+   size_t rowB = 0;
+   size_t columnB = 0;
+   size_t iterations = 0;
 
-   const size_t matrixSizeC = rowA * columnB;
+   std::cout << "Row (matrix A): ";
+   std::cin >> rowA;
+   std::cout << "Column (matrix A): ";
+   std::cin >> columnA;
+
+   std::cout << "Row (matrix B): ";
+   std::cin >> rowB;
+   std::cout << "Column (matrix B): ";
+   std::cin >> columnB;
+
+   if (columnA != rowB)
+   {
+      std::cout << "SORRY: ColumnA must be equal rowB" << std::endl;
+      std::cout << "TRY AGAIN DUDE!" << std::endl;
+      exit(true);
+   }
+
+   std::cout << "Iterations: ";
+   std::cin >> iterations;
 
    std::cout << "Matrix A (size): " << rowA << "x" << columnA << std::endl;
    std::cout << "Matrix B (size): " << rowB << "x" << columnB << std::endl;
 
-   getCPUInfo();
+   const size_t matrixSizeA = rowA * columnA;
+   const size_t matrixSizeB = rowB * columnB;
+   const size_t matrixSizeC = rowA * columnB;
 
    std::cout << "Allocating RAM... ";
    float *matrixA = new float[matrixSizeA];
@@ -45,7 +65,8 @@ int main()
    typedef std::chrono::steady_clock::time_point Time;
 
    Time start = std::chrono::steady_clock::now();
-   multMatrix(matrixA, rowA, columnA, matrixB, rowB, columnB, matrixC);
+   for (size_t i = 0; i <= iterations; i++)
+      multMatrix(matrixA, rowA, columnA, matrixB, rowB, columnB, matrixC);
    Time end = std::chrono::steady_clock::now();
 
    std::cout << "OK" << std::endl << std::endl;
@@ -60,6 +81,14 @@ int main()
    delete[] matrixA;
    delete[] matrixB;
    delete[] matrixC;
+
+
+#ifdef _WIN32
+
+   std::cin.ignore();
+   std::cin.get();
+
+#endif
 
 
    return 0;
