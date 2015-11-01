@@ -57,7 +57,8 @@ int main()
 
 #ifdef _WIN32
 
-    getchar();
+	std::cin.ignore();
+	std::cin.get();
 
 #endif
 
