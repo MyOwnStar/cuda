@@ -8,27 +8,42 @@
 
 int main()
 {
-   const size_t rowA = 2048;
-   const size_t columnA = 1536;
-   const size_t matrixSizeA = rowA * columnA;
-   const size_t byteSizeA = matrixSizeA * sizeof(float);
-
-   const size_t rowB = 1536;
-   const size_t columnB = 4096;
-   const size_t matrixSizeB = rowB * columnB;
-   const size_t byteSizeB = matrixSizeB * sizeof(float);
-
-   const size_t matrixSizeC = rowA * columnB;
-   const size_t byteSizeC = matrixSizeC * sizeof(float);
-
    getGPUInfo();
+
+   size_t rowA = 0;
+   size_t columnA = 0;
+   size_t rowB = 0;
+   size_t columnB = 0;
+   size_t iterations = 0;
+
+   std::cout << "Row (matrix A): ";
+   std::cin >> rowA;
+   std::cout << "Column (matrix A): ";
+   std::cin >> columnA;
+
+   std::cout << "Row (matrix B): ";
+   std::cin >> rowB;
+   std::cout << "Column (matrix B): ";
+   std::cin >> columnB;
+
+   std::cout << "Iterations: ";
+   std::cin >> iterations;
+
+   if (columnA != rowB)
+   {
+      std::cout << "SORRY: ColumnA must be equal RowB" << std::endl;
+      std::cout << "TRY AGAIN DUDE" << std::endl;
+      exit(true);
+   }
 
    std::cout << std::endl;
    std::cout << "Matrix A (size): " << rowA << "x" << columnA << std::endl;
    std::cout << "Matrix B (size): " << rowB << "x" << columnB << std::endl;
-   std::cout << "Matrix A (size bytes): " << byteSizeA << std::endl;
-   std::cout << "Matrix B (size bytes): " << byteSizeB << std::endl;
    std::cout << std::endl;
+
+   const size_t matrixSizeA = rowA * columnA;
+   const size_t matrixSizeB = rowB * columnB;
+   const size_t matrixSizeC = rowA * columnB;
 
    std::cout << "Allocating RAM (host)... ";
    float *hMatrixA = new float[matrixSizeA];
@@ -44,6 +59,10 @@ int main()
    float *dMatrixA = nullptr;
    float *dMatrixB = nullptr;
    float *dMatrixC = nullptr;
+
+   const size_t byteSizeA = matrixSizeA * sizeof(float);
+   const size_t byteSizeB = matrixSizeB * sizeof(float);
+   const size_t byteSizeC = matrixSizeC * sizeof(float);
 
    std::cout << "Allocating RAM (device)... ";
    cudaMalloc((void**)&dMatrixA, byteSizeA);
@@ -62,7 +81,8 @@ int main()
 
    std::cout << "Computing... ";
    cudaEventRecord(start, 0);
-   multMatrix(dMatrixA, rowA, columnA, dMatrixB, rowB, columnB, dMatrixC);
+   for (size_t i = 0; i <= iterations; i++)
+      multMatrix(dMatrixA, rowA, columnA, dMatrixB, rowB, columnB, dMatrixC);
    cudaEventRecord(stop, 0);
    std::cout << "OK!" << std::endl;
 
@@ -92,6 +112,14 @@ int main()
    cudaFree(dMatrixA);
    cudaFree(dMatrixB);
    cudaFree(dMatrixC);
+
+
+#ifdef _WIN32
+
+   std::cin.ignore();
+   std::cin.get();
+
+#endif
 
    return 0;
 }
