@@ -23,11 +23,8 @@ double calcIntegral(unsigned long n)
    return sum / n;
 }
 
-
 int main()
 {
-   const double PI = 3.141592653589793;
-
    unsigned long stepCount = 500000000;
 
    typedef std::chrono::steady_clock::time_point Time;
@@ -39,7 +36,6 @@ int main()
    std::cout << "OK" << std::endl;
 
    std::cout << "Result: " << std::setprecision(15) << std::fixed << result << std::endl;
-   std::cout << "Error: " << fabs(result - PI) << std::endl;
    std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count()
              << " ms" << std::endl;
 
