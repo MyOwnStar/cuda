@@ -28,7 +28,7 @@ int main()
 {
    const double PI = 3.141592653589793;
 
-   unsigned long stepCount = 500000000;
+   unsigned long stepCount = 5000000;
 
    typedef std::chrono::steady_clock::time_point Time;
 
