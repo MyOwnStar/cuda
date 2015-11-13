@@ -26,12 +26,7 @@ double calcIntegral(unsigned long n)
 
 int main()
 {
-<<<<<<< HEAD
-   const double PI = 3.141592653589793;
-
-=======
->>>>>>> a9673d92f0dff39434f04bbc253f5b9203265480
-   unsigned long stepCount = 5000000;
+   unsigned long stepCount = 1000000;
 
    typedef std::chrono::steady_clock::time_point Time;
 
